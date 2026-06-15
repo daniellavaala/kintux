@@ -306,7 +306,13 @@
 <label class="block font-label-md text-on-surface-variant mb-6 uppercase tracking-widest text-center">Monto de la Venta</label>
 <div class="relative group mb-8">
 <span class="absolute left-6 top-1/2 -translate-y-1/2 text-brand-blue font-bold text-2xl">$</span>
-<input class="w-full bg-surface border-2 border-outline-variant/30 rounded-2xl py-6 pl-12 pr-6 text-headline-md font-bold text-on-surface focus:border-brand-neon focus:ring-0 transition-all" id="saleAmount" type="number" min="10000" max="2000000" step="10000" value="500000"/>
+<input
+  class="w-full bg-surface border-2 border-outline-variant/30 rounded-2xl py-6 pl-12 pr-6 text-headline-md font-bold text-on-surface focus:border-brand-neon focus:ring-0 transition-all"
+  id="saleAmount"
+  type="text"
+  value="$500.000"
+  readonly
+/>
 </div>
 <input class="w-full" id="saleRange" max="2000000" min="10000" step="10000" type="range" value="500000"/>
 </div><div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -369,8 +375,11 @@
 <script>
   const IVA_CHILE = 0.19;
 
-  const KINTUX_COMMISSION = 0.006; // 0.6%
-  const OTHERS_COMMISSION = 0.0079; // 0.79%
+  const MIN_AMOUNT = 10000;
+  const MAX_AMOUNT = 2000000;
+
+  const KINTUX_COMMISSION = 0.006;
+  const OTHERS_COMMISSION = 0.0079;
 
   const saleAmount = document.getElementById("saleAmount");
   const saleRange = document.getElementById("saleRange");
@@ -396,17 +405,13 @@
     const iva = commission * IVA_CHILE;
     const net = amount - commission - iva;
 
-    return {
-      commission,
-      iva,
-      net
-    };
+    return { commission, iva, net };
   }
 
   function updateCalculators(value) {
-    const amount = Number(value) || 0;
+    const amount = Math.min(Math.max(Number(value) || MIN_AMOUNT, MIN_AMOUNT), MAX_AMOUNT);
 
-    saleAmount.value = amount;
+    saleAmount.value = formatCLP(amount);
     saleRange.value = amount;
 
     const kintux = calculate(amount, KINTUX_COMMISSION);
@@ -421,15 +426,14 @@
     ivaFeeOthers.textContent = `-${formatCLP(others.iva)}`;
   }
 
-  saleAmount.addEventListener("input", function () {
-    updateCalculators(this.value);
-  });
+  saleRange.min = MIN_AMOUNT;
+  saleRange.max = MAX_AMOUNT;
 
   saleRange.addEventListener("input", function () {
     updateCalculators(this.value);
   });
 
-  updateCalculators(saleAmount.value);
+  updateCalculators(saleRange.value);
 </script>
 <!-- Footer - Converted to Light -->
 <footer class="w-full py-20 bg-surface-container-low border-t border-outline-variant/20">
