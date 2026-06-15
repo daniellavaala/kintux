@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#001f28",
+                        "on-surface-variant": "#3a4a44",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed-dim": "#4cd6ff",
+                        "on-secondary-fixed": "#07006c",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#b7eaff",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "primary-fixed-dim": "#00e0b4",
+                        "inverse-primary": "#00e0b4",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#006b55",
+                        "on-primary-fixed-variant": "#00513f",
+                        "secondary": "#302ae6",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#4c4cfe",
+                        "on-secondary-container": "#e8e6ff",
+                        "secondary-fixed": "#e1e0ff",
+                        "surface-bright": "#faf8ff",
+                        "surface-container-highest": "#dae2fd",
+                        "primary-container": "#00f2c3",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface-variant": "#dae2fd",
+                        "surface": "#faf8ff",
+                        "primary": "#006b55",
+                        "on-primary-container": "#006a54",
+                        "on-primary-fixed": "#002118",
+                        "surface-dim": "#d2d9f4",
+                        "surface-container": "#eaedff",
+                        "on-tertiary-container": "#00667d",
+                        "outline": "#6a7b74",
+                        "tertiary": "#00677f",
+                        "on-background": "#131b2e",
+                        "outline-variant": "#b9cac2",
+                        "surface-container-high": "#e2e7ff",
+                        "on-surface": "#131b2e",
+                        "tertiary-container": "#92e2ff",
+                        "primary-fixed": "#2effcf",
+                        "background": "#faf8ff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#2316de",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "brand-neon": "#00f2c3",
+                        "brand-blue": "#302ae6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "xl": "40px",
+                        "lg": "32px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["22px", {"lineHeight": "30px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 10% 20%, rgba(0, 242, 195, 0.12) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(48, 42, 230, 0.08) 0%, transparent 40%);
+        }
+        .tech-card {
+            border: 1px solid rgba(0, 242, 195, 0.15);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .tech-card:hover {
+            border-color: #00f2c3;
+            box-shadow: 0 30px 60px -12px rgba(0, 242, 195, 0.15);
+            transform: translateY(-4px);
+        }
+        .btn-tech {
+            background: linear-gradient(135deg, #00f2c3 0%, #00b894 100%);
+            color: #002118;
+            box-shadow: 0 10px 20px -5px rgba(0, 242, 195, 0.4);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-tech:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(0, 242, 195, 0.5);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e2e7ff;
+            border-radius: 2px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #00f2c3;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -10px;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/20">
+<nav class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="flex items-center gap-3"><img alt="Kintux Logo" class="h-10 w-auto" src="https://res.cloudinary.com/dgde5mg2u/image/upload/v1781545930/Principal_Sin_Fondo_qtgwpp.png"/></div>
+<div class="hidden md:flex items-center gap-xl">
+<a class="font-label-md text-on-surface-variant hover:text-brand-blue transition-colors" href="#machine">La Máquina</a>
+<a class="font-label-md text-on-surface-variant hover:text-brand-blue transition-colors" href="#commissions">Comisiones</a>
+<a class="font-label-md text-on-surface-variant hover:text-brand-blue transition-colors" href="#calculator">Calculadora</a>
+<a class="font-label-md text-on-surface-variant hover:text-brand-blue transition-colors" href="#">Soporte</a>
+</div>
+<button class="btn-tech px-lg py-sm rounded-full font-label-md">
+            Obtener Gratis
+        </button>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="relative pt-32 pb-24 md:pt-48 md:pb-40 hero-gradient">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="z-10 text-center lg:text-left">
+<div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-brand-neon/10 border border-brand-neon/20 text-primary font-label-md mb-md">
+<span class="w-2 h-2 rounded-full bg-brand-neon animate-pulse"></span>
+                REVOLUCIÓN FINTECH 2026
+            </div>
+<h1 class="font-display-lg text-display-lg mb-lg text-on-surface">
+                Tu punto de venta, ahora <span class="text-brand-blue">Totalmente Gratis.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                Únete a los miles de comercios que ya no pagan por su hardware. Recibe tu Kintux Pro sin costo y paga la comisión más baja del mercado.
+            </p>
+<div class="flex flex-col sm:flex-row gap-md justify-center lg:justify-start">
+<button class="btn-tech px-xl py-md rounded-2xl font-headline-sm flex items-center justify-center gap-2">
+                    Solicitar mi terminal
+                    <span class="material-symbols-outlined">bolt</span>
+</button>
+<button class="glass text-on-surface px-xl py-md rounded-2xl font-headline-sm border border-outline-variant hover:bg-surface-container transition-all">
+                    Ver beneficios
+                </button>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -top-10 -right-10 w-96 h-96 bg-brand-neon/10 rounded-full blur-[100px]"></div>
+<div class="absolute -bottom-10 -left-10 w-96 h-96 bg-brand-blue/5 rounded-full blur-[100px]"></div>
+<div class="relative z-10 p-4 bg-white/20 backdrop-blur-sm rounded-[2.5rem] border border-white/40 shadow-2xl overflow-hidden">
+<img alt="Kintux Pro Terminal" class="w-full h-auto rounded-[2rem] shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3Mbbkww2WYGZLW2IvBkrbwNWKVo7ix3jpZ3jd9F5zF0dCmFeC2GUJ4_wUaywwt-3BziNx-1-0ESwRBypI37IfOrnPk6cJK4pkM_E_tt_xP9o2HVf5Ybm7NfSWABA0cdlpenJ1t-SWy2ZxnnNzqTRTk1qTGQ_chXtLDT07a0-V9bR3W-ms10QyNrZK6mAWVgD60r_Mn8oeHFKmf_42pzY9uqKZPe_X7FwvXZMt-Aq3nnqRjw3iFPWI4i0W30hV0LxB23nRnC5cnpg"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Single Machine Feature -->
+<section class="py-32 bg-white" id="machine">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+<div class="order-2 lg:order-1">
+<div class="tech-card bg-surface-container-low p-8 rounded-[3rem] relative overflow-hidden">
+<div class="absolute top-8 left-8 bg-brand-neon text-on-primary-fixed px-4 py-1.5 rounded-full text-label-md font-bold tracking-wider">COSTO $0</div>
+<img alt="Kintux Pro Detail" class="w-full h-auto rounded-3xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkMaA8Im4gDpBqvJkL_FcAsnYtviwj0s-kFxkI6wIJPeSTS1Ik1YDi3_p5Tu3NwIMKxrJOssp7uyNhoQ4oFjOHT8pcy6UfgfvGfARQqvppekjGaPCLUvVtQNRN6A6g-DTdMR0i_LCPlu9GEyQE6j0vDp_QvC6Rkk2c3NdzGpyUNLc4pYNH5ltsNHCWRI5H6XtJsQkiQCi_d2HCyx9-i-vb2jvXDnty5Oi-M_rt9yVy_zmjP3KMS4QjDxaYMuAM-6ZcpuFcBThjp3o"/>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<h2 class="font-headline-lg text-headline-lg mb-lg text-on-surface">Kintux Pro: La única herramienta que tu negocio necesita</h2>
+<p class="text-body-lg text-on-surface-variant mb-xl leading-relaxed">
+                    Nuestra terminal insignia combina potencia, diseño y simplicidad. Procesadora Quad-Core, batería de larga duración e impresora térmica integrada. 
+                    <br/><br/>
+<strong>Y lo mejor: es gratis para comercios con ventas mensuales superiores a $1.000.000.</strong>
+</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-brand-neon text-3xl">wifi</span>
+<div>
+<h4 class="font-headline-sm text-lg mb-1 text-on-surface">Dual Connectivity</h4>
+<p class="text-sm text-on-surface-variant">4G LTE + Wi-Fi de alta velocidad incluido.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-brand-neon text-3xl">print</span>
+<div>
+<h4 class="font-headline-sm text-lg mb-1 text-on-surface">Impresora Ultra-fast</h4>
+<p class="text-sm text-on-surface-variant">Tickets en papel en menos de 2 segundos.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-brand-neon text-3xl">contactless</span>
+<div>
+<h4 class="font-headline-sm text-lg mb-1 text-on-surface">NFC &amp; Chip</h4>
+<p class="text-sm text-on-surface-variant">Acepta todas las tarjetas y billeteras digitales.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-brand-neon text-3xl">battery_charging_full</span>
+<div>
+<h4 class="font-headline-sm text-lg mb-1 text-on-surface">24h Battery</h4>
+<p class="text-sm text-on-surface-variant">Trabaja todo el día sin preocuparte por cables.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Simplified Commission Section - Converted to Light -->
+<section class="py-32 bg-surface-container-low text-on-surface relative overflow-hidden border-y border-outline-variant/10" id="commissions">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-blue/5 via-transparent to-transparent"></div>
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
+<div class="max-w-3xl mx-auto">
+<h2 class="font-display-lg text-headline-lg md:text-[56px] mb-8 text-on-surface">Máquina Gratis<div class="">+ Comisión Única</div></h2>
+<div class="inline-block p-1 bg-gradient-to-r from-brand-neon to-brand-blue rounded-3xl mb-12 shadow-xl shadow-brand-blue/10">
+<div class="bg-surface px-12 py-10 rounded-[1.4rem]">
+<span class="block text-brand-blue text-7xl font-extrabold mb-2">0.6%</span>
+<span class="text-label-md uppercase tracking-[0.2em] text-on-surface-variant">+ IVA / TODAS LAS TARJETAS</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-brand-blue">verified</span>
+<p class="text-body-md text-on-surface-variant">Sin costos mensuales fijos ni mantenimientos.</p>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-brand-blue">history</span>
+<p class="text-body-md text-on-surface-variant">Depósitos en tu cuenta en 24 horas garantizado.</p>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-brand-blue">language</span>
+<p class="text-body-md text-on-surface-variant">Acepta ventas internacionales sin cargos extra.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Calculator -->
+<section class="py-32 bg-surface hero-gradient" id="calculator">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="max-w-5xl mx-auto">
+<div class="text-center mb-20">
+<h2 class="font-headline-lg text-headline-lg mb-4 text-on-surface">Calcula tu rentabilidad</h2>
+<p class="font-body-md text-on-surface-variant">Compara lo que recibes con Kintux vs otros.</p>
+</div>
+<div class="glass p-8 md:p-16 rounded-[3rem] border-brand-neon/10">
+<div class="mb-12 max-w-2xl mx-auto">
+<label class="block font-label-md text-on-surface-variant mb-6 uppercase tracking-widest text-center">Monto de la Venta</label>
+<div class="relative group mb-8">
+<span class="absolute left-6 top-1/2 -translate-y-1/2 text-brand-blue font-bold text-2xl">$</span>
+<input class="w-full bg-surface border-2 border-outline-variant/30 rounded-2xl py-6 pl-12 pr-6 text-headline-md font-bold text-on-surface focus:border-brand-neon focus:ring-0 transition-all" id="saleAmount" type="number" value="500000"/>
+</div>
+<input class="w-full" id="saleRange" max="2000000" min="10000" step="10000" type="range" value="500000"/>
+</div><div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- Kintux Column -->
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-brand-blue">verified</span>
+<h3 class="font-headline-sm text-on-surface">Kintux Pro</h3>
+</div>
+<div class="bg-brand-blue rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden flex-1">
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-neon/20 rounded-full blur-3xl"></div>
+<span class="text-label-md uppercase tracking-widest text-white/60 mb-2 block">Recibirás Neto</span>
+<div class="text-4xl font-extrabold tracking-tighter mb-8 leading-none" id="netAmountKintux">$497,000</div>
+<div class="space-y-4 pt-6 border-t border-white/10">
+<div class="flex justify-between items-center text-sm">
+<span class="text-white/60">Comisión (0.6%)</span>
+<span class="font-bold text-white" id="commFeeKintux">-$3,000</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-white/60">IVA sobre comisión</span>
+<span class="font-bold text-white" id="ivaFeeKintux">-$570</span>
+</div>
+<div class="flex justify-between items-center text-sm pt-2 border-t border-white/5">
+<span class="text-brand-neon font-bold uppercase">Costo Terminal</span>
+<span class="font-bold text-brand-neon">$0</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Competencia Column -->
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-on-surface-variant">group</span>
+<h3 class="font-headline-sm text-on-surface-variant">Competencia</h3>
+</div>
+<div class="bg-surface-container-highest rounded-[2.5rem] p-8 text-on-surface shadow-lg flex-1 border border-outline-variant/20">
+<span class="text-label-md uppercase tracking-widest text-on-surface-variant mb-2 block">Recibirás Neto</span>
+<div class="text-4xl font-extrabold tracking-tighter mb-8 leading-none text-on-surface" id="netAmountOthers">$441,000</div>
+<div class="space-y-4 pt-6 border-t border-outline-variant/20">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Comisión (0.79%)</span>
+<span class="font-bold" id="commFeeOthers">-$3,950</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">IVA sobre comisión</span>
+<span class="font-bold" id="ivaFeeOthers">-$750</span>
+</div>
+<div class="flex justify-between items-center text-sm pt-2 border-t border-outline-variant/10">
+<span class="text-on-surface-variant font-bold uppercase">Costo Terminal</span>
+<span class="font-bold text-error">$55.000</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<script>
+  const IVA_CHILE = 0.19;
+
+  const KINTUX_COMMISSION = 0.006; // 0.6%
+  const OTHERS_COMMISSION = 0.0079; // 0.79%
+
+  const saleAmount = document.getElementById("saleAmount");
+  const saleRange = document.getElementById("saleRange");
+
+  const netAmountKintux = document.getElementById("netAmountKintux");
+  const commFeeKintux = document.getElementById("commFeeKintux");
+  const ivaFeeKintux = document.getElementById("ivaFeeKintux");
+
+  const netAmountOthers = document.getElementById("netAmountOthers");
+  const commFeeOthers = document.getElementById("commFeeOthers");
+  const ivaFeeOthers = document.getElementById("ivaFeeOthers");
+
+  function formatCLP(value) {
+    return new Intl.NumberFormat("es-CL", {
+      style: "currency",
+      currency: "CLP",
+      maximumFractionDigits: 0
+    }).format(Math.round(value));
+  }
+
+  function calculate(amount, commissionRate) {
+    const commission = amount * commissionRate;
+    const iva = commission * IVA_CHILE;
+    const net = amount - commission - iva;
+
+    return {
+      commission,
+      iva,
+      net
+    };
+  }
+
+  function updateCalculators(value) {
+    const amount = Number(value) || 0;
+
+    saleAmount.value = amount;
+    saleRange.value = amount;
+
+    const kintux = calculate(amount, KINTUX_COMMISSION);
+    const others = calculate(amount, OTHERS_COMMISSION);
+
+    netAmountKintux.textContent = formatCLP(kintux.net);
+    commFeeKintux.textContent = `-${formatCLP(kintux.commission)}`;
+    ivaFeeKintux.textContent = `-${formatCLP(kintux.iva)}`;
+
+    netAmountOthers.textContent = formatCLP(others.net);
+    commFeeOthers.textContent = `-${formatCLP(others.commission)}`;
+    ivaFeeOthers.textContent = `-${formatCLP(others.iva)}`;
+  }
+
+  saleAmount.addEventListener("input", function () {
+    updateCalculators(this.value);
+  });
+
+  saleRange.addEventListener("input", function () {
+    updateCalculators(this.value);
+  });
+
+  updateCalculators(saleAmount.value);
+</script>
+<!-- Footer - Converted to Light -->
+<footer class="w-full py-20 bg-surface-container-low border-t border-outline-variant/20">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="md:col-span-1">
+<div class="flex items-center gap-3 mb-8"><img alt="Kintux Logo" class="h-10 w-auto" src="https://res.cloudinary.com/dgde5mg2u/image/upload/v1781545930/Principal_Sin_Fondo_qtgwpp.png"/></div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">
+                Empoderando a los comercios con tecnología financiera de punta y costos transparentes.
+            </p>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-brand-neon hover:text-white transition-all cursor-pointer">
+<span class="material-symbols-outlined text-sm">public</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-brand-neon hover:text-white transition-all cursor-pointer">
+<span class="material-symbols-outlined text-sm">mail</span>
+</div>
+</div>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-on-surface">Producto</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">La Terminal Pro</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">App Móvil</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Precios</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Seguridad</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-on-surface">Legal</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Privacidad</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Términos y Condiciones</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Contrato de Comercio</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Cookies</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-on-surface">Empresa</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Nosotros</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Blog</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Contacto</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Trabaja con nosotros</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop mt-20 pt-8 border-t border-outline-variant/10">
+<p class="text-xs text-on-surface-variant text-center">© 2026 Kintux. Todos los derechos reservados.</p>
+</div>
+</footer>
+<script>
+    const saleInput = document.getElementById('saleAmount');
+    const saleRange = document.getElementById('saleRange');
+    const netDisplay = document.getElementById('netAmount');
+    const commDisplay = document.getElementById('commFee');
+    const ivaDisplay = document.getElementById('ivaFee');
+
+    function updateCalculator() {
+        const amount = parseFloat(saleInput.value) || 0;
+        const comm = amount * 0.029;
+        const iva = comm * 0.19;
+        const net = amount - comm - iva;
+
+        netDisplay.textContent = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(net);
+        commDisplay.textContent = '-' + new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(comm);
+        ivaDisplay.textContent = '-' + new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(iva);
+    }
+
+    saleInput.addEventListener('input', (e) => {
+        saleRange.value = e.target.value;
+        updateCalculator();
+    });
+
+    saleRange.addEventListener('input', (e) => {
+        saleInput.value = e.target.value;
+        updateCalculator();
+    });
+
+    // Initialize
+    updateCalculator();
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body></html>
