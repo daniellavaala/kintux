@@ -180,8 +180,8 @@
 <span class="material-symbols-outlined">wifi</span>
 </div>
 <div>
-<p class="font-label-md text-label-md">Dual Connectivity</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Wi-Fi + 4G LTE Always connected</p>
+<p class="font-label-md text-label-md">Conectividad dual</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Wi-Fi + 4G LTE siempre conectado</p>
 </div>
 </div>
 <div class="flex items-start gap-md">
@@ -189,8 +189,8 @@
 <span class="material-symbols-outlined">contactless</span>
 </div>
 <div>
-<p class="font-label-md text-label-md">NFC &amp; Chip</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Fast payment processing</p>
+<p class="font-label-md text-label-md">NFC y Chip</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Procesamiento rápido de pagos</p>
 </div>
 </div>
 <div class="flex items-start gap-md">
@@ -198,8 +198,8 @@
 <span class="material-symbols-outlined">battery_charging_full</span>
 </div>
 <div>
-<p class="font-label-md text-label-md">24h Battery</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Lasts the full business day</p>
+<p class="font-label-md text-label-md">Batería de 24h</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Dura toda la jornada laboral</p>
 </div>
 </div>
 <div class="flex items-start gap-md">
@@ -207,8 +207,8 @@
 <span class="material-symbols-outlined">print</span>
 </div>
 <div>
-<p class="font-label-md text-label-md">Ultra-fast printer</p>
-<p class="font-body-md text-body-md text-on-surface-variant">58mm thermal rolls</p>
+<p class="font-label-md text-label-md">Impresora ultrarrápida</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Rollos térmicos de 58mm</p>
 </div>
 </div>
 </div>
@@ -357,15 +357,34 @@
 <div class="pt-xl border-t border-outline-variant/30 flex flex-col gap-md">
 <div class="flex justify-between items-end">
 <div>
-<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Total a pagar</p>
-<p class="font-display-lg text-[40px] leading-none font-bold text-primary" id="totalAmount">$0</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">
+    Total a pagar
+</p>
+
+<div class="mt-1 space-y-1">
+<p class="text-xs text-on-surface-variant">
+    Neto: <span id="subtotalAmount">$0</span>
+</p>
+
+<p class="text-xs text-on-surface-variant">
+    IVA (19%): <span id="ivaAmount">$0</span>
+</p>
 </div>
-<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">IVA incluido</p>
+
+<p class="font-display-lg text-[40px] leading-none font-bold text-primary mt-2" id="totalAmount">
+    $0
+</p>
 </div>
-<button class="w-full h-14 btn-tech rounded-2xl font-headline-sm flex items-center justify-center gap-md hover:shadow-lg hover:shadow-brand-neon/20 active:scale-[0.98] transition-all">
-                    Continuar al registro
-                    <span class="material-symbols-outlined">arrow_forward</span>
-</button>
+
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">
+    IVA incluido
+</p>
+</div>
+<a href="registro.html"
+   class="w-full h-14 btn-tech rounded-2xl font-headline-sm flex items-center justify-center gap-md hover:shadow-lg hover:shadow-brand-neon/20 active:scale-[0.98] transition-all">
+    Continuar
+    <span class="material-symbols-outlined">arrow_forward</span>
+</a>
 </div>
 </div>
 </div>
@@ -442,6 +461,8 @@ Si quieres emitir documentos electr&oacute;nicos (boletas o facturas) deber&aacu
     let equipmentQuantity = 1;
 
     const totalAmount = document.getElementById("totalAmount");
+    const subtotalAmount = document.getElementById("subtotalAmount");
+const ivaAmount = document.getElementById("ivaAmount");
     const accessoryQuantityLabel = document.getElementById("accessoryQuantity");
     const equipmentQuantityLabel = document.getElementById("equipmentQuantity");
 
@@ -481,9 +502,12 @@ Si quieres emitir documentos electr&oacute;nicos (boletas o facturas) deber&aacu
 
         const accessoriesTotal = accessoryQuantity * ACCESSORY_PRICE;
         const subtotal = selectedOptionsTotal + accessoriesTotal;
-        const totalWithIva = subtotal * (1 + IVA_CHILE);
+        const ivaValue = subtotal * IVA_CHILE;
+const totalWithIva = subtotal + ivaValue;
 
-        totalAmount.textContent = formatCLP(totalWithIva);
+subtotalAmount.textContent = formatCLP(subtotal);
+ivaAmount.textContent = formatCLP(ivaValue);
+totalAmount.textContent = formatCLP(totalWithIva);
         accessoryQuantityLabel.textContent = accessoryQuantity;
         equipmentQuantityLabel.textContent = equipmentQuantity;
     }
