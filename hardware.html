@@ -241,13 +241,19 @@
 <span class="material-symbols-outlined text-primary">terminal</span>
 </div>
 <div>
-<p class="font-label-md text-label-md">Individual: PRO 2</p>
+<p class="font-label-md text-label-md">Modelo PRO-01</p>
 <p class="font-body-md text-body-md text-on-surface-variant line-through">$32.900</p>
 </div>
 </div>
 <div class="text-right">
 <p class="font-headline-md text-headline-md text-primary">$0</p>
 <p class="font-label-sm text-label-sm text-on-surface-variant">+ IVA</p>
+</div>
+<div class="flex items-center bg-surface-container rounded-lg">
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-variant rounded-l-lg transition-colors" data-equipment-action="decrease" type="button">-</button>
+<span class="px-md font-label-md" id="equipmentQuantity">1</span>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-variant rounded-r-lg transition-colors" data-equipment-action="increase" type="button">+</button>
+</div>
 </div>
 </div>
 </section>
@@ -432,9 +438,11 @@ Si quieres emitir documentos electr&oacute;nicos (boletas o facturas) deber&aacu
     const ACCESSORY_PRICE = 4900;
 
     let accessoryQuantity = 0;
+        let equipmentQuantity = 1;
 
     const totalAmount = document.getElementById("totalAmount");
     const accessoryQuantityLabel = document.getElementById("accessoryQuantity");
+        const equipmentQuantityLabel = document.getElementById("equipmentQuantity");
 
     const productImages = [
         "https://res.cloudinary.com/dgde5mg2u/image/upload/v1781554701/POS_KINTUX2_fzofdr.png",
@@ -476,6 +484,7 @@ Si quieres emitir documentos electr&oacute;nicos (boletas o facturas) deber&aacu
 
         totalAmount.textContent = formatCLP(totalWithIva);
         accessoryQuantityLabel.textContent = accessoryQuantity;
+            equipmentQuantityLabel.textContent = equipmentQuantity;
     }
 
     const signatureModal = document.getElementById("signatureModal");
@@ -510,6 +519,15 @@ Si quieres emitir documentos electr&oacute;nicos (boletas o facturas) deber&aacu
     document.querySelectorAll(".js-price-option").forEach(option => {
         option.addEventListener("change", calculateTotal);
     });
+document.querySelectorAll("[data-equipment-action]").forEach(button => {
+        button.addEventListener("click", () => {
+            const action = button.dataset.equipmentAction;
+            equipmentQuantity = action === "increase"
+                ? Math.min(10, equipmentQuantity + 1)
+                : Math.max(1, equipmentQuantity - 1);
+
+            calculateTotal();
+        });
 
     document.querySelectorAll("[data-accessory-action]").forEach(button => {
         button.addEventListener("click", () => {
