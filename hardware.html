@@ -224,6 +224,54 @@
                     MÁQUINA GRATIS
                 </div>
 </div>
+<!-- About Kintux Pro Accordion -->
+<section class="space-y-md">
+<button id="aboutMachineToggle" type="button" class="w-full glass-card rounded-2xl p-md flex items-center justify-between text-left hover:border-brand-neon/40 transition-all duration-300">
+<div>
+<p class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">
+                Sobre mi m&aacute;quina KINTUX PRO
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                Conoce todo lo que incluye tu terminal
+            </p>
+</div>
+<span id="aboutMachineIcon" class="material-symbols-outlined transition-transform duration-300">
+            expand_more
+        </span>
+</button>
+<div id="aboutMachineContent" class="overflow-hidden max-h-0 opacity-0 transition-all duration-500 ease-in-out">
+<div class="glass-card rounded-2xl p-lg space-y-md">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                La KINTUX PRO est&aacute; dise&ntilde;ada para ayudarte a vender de forma r&aacute;pida, moderna y segura.
+                Acepta pagos con tarjetas de d&eacute;bito, cr&eacute;dito, NFC y billeteras digitales, entregando una experiencia de cobro &aacute;gil para tus clientes.
+            </p>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                Adem&aacute;s, podr&aacute;s emitir boletas electr&oacute;nicas, imprimir comprobantes al instante y administrar tus ventas desde una interfaz intuitiva y conectada en todo momento gracias a su conectividad Wi-Fi + 4G LTE.
+            </p>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                Incluye bater&iacute;a de larga duraci&oacute;n, impresora t&eacute;rmica integrada y compatibilidad con m&uacute;ltiples m&eacute;todos de pago para que puedas vender desde tu local o en movimiento.
+            </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md pt-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">credit_card</span>
+<span class="font-label-md text-label-md">Pagos d&eacute;bito y cr&eacute;dito</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">contactless</span>
+<span class="font-label-md text-label-md">NFC y billeteras digitales</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+<span class="font-label-md text-label-md">Emisi&oacute;n de boletas</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">print</span>
+<span class="font-label-md text-label-md">Impresora integrada</span>
+</div>
+</div>
+</div>
+</div>
+</section>
 <!-- Delivery Info Card -->
 <div class="glass-card rounded-2xl p-md flex items-center gap-md border-brand-neon/20">
 <div class="p-sm bg-brand-blue/10 rounded-xl text-brand-blue">
@@ -440,6 +488,9 @@ Si quieres emitir documentos electr&oacute;nicos (boletas o facturas) deber&aacu
 const ivaAmount = document.getElementById("ivaAmount");
     const accessoryQuantityLabel = document.getElementById("accessoryQuantity");
     const equipmentQuantityLabel = document.getElementById("equipmentQuantity");
+    const aboutMachineToggle = document.getElementById("aboutMachineToggle");
+    const aboutMachineContent = document.getElementById("aboutMachineContent");
+    const aboutMachineIcon = document.getElementById("aboutMachineIcon");
 
     const productImages = [
         "https://res.cloudinary.com/dgde5mg2u/image/upload/v1781554701/POS_KINTUX2_fzofdr.png",
@@ -478,13 +529,13 @@ const ivaAmount = document.getElementById("ivaAmount");
         const accessoriesTotal = accessoryQuantity * ACCESSORY_PRICE;
         const subtotal = selectedOptionsTotal + accessoriesTotal;
         const ivaValue = subtotal * IVA_CHILE;
-const totalWithIva = subtotal + ivaValue;
+        const totalWithIva = subtotal + ivaValue;
 
-subtotalAmount.textContent = formatCLP(subtotal);
-ivaAmount.textContent = formatCLP(ivaValue);
-totalAmount.textContent = formatCLP(totalWithIva);
-        accessoryQuantityLabel.textContent = accessoryQuantity;
-        equipmentQuantityLabel.textContent = equipmentQuantity;
+        if (subtotalAmount) subtotalAmount.textContent = formatCLP(subtotal);
+        if (ivaAmount) ivaAmount.textContent = formatCLP(ivaValue);
+        if (totalAmount) totalAmount.textContent = formatCLP(totalWithIva);
+        if (accessoryQuantityLabel) accessoryQuantityLabel.textContent = accessoryQuantity;
+        if (equipmentQuantityLabel) equipmentQuantityLabel.textContent = equipmentQuantity;
     }
 
     const signatureModal = document.getElementById("signatureModal");
@@ -492,25 +543,41 @@ totalAmount.textContent = formatCLP(totalWithIva);
     const closeSignatureModal = document.getElementById("closeSignatureModal");
 
     function showSignatureModal() {
+        if (!signatureModal) return;
         signatureModal.classList.remove("hidden");
         signatureModal.classList.add("flex");
         signatureModal.setAttribute("aria-hidden", "false");
     }
 
     function hideSignatureModal() {
+        if (!signatureModal) return;
         signatureModal.classList.add("hidden");
         signatureModal.classList.remove("flex");
         signatureModal.setAttribute("aria-hidden", "true");
     }
 
-    openSignatureModal.addEventListener("click", showSignatureModal);
-    closeSignatureModal.addEventListener("click", hideSignatureModal);
-    signatureModal.addEventListener("click", (event) => {
-        if (event.target === signatureModal) hideSignatureModal();
-    });
+    if (openSignatureModal) openSignatureModal.addEventListener("click", showSignatureModal);
+    if (closeSignatureModal) closeSignatureModal.addEventListener("click", hideSignatureModal);
+    if (signatureModal) {
+        signatureModal.addEventListener("click", (event) => {
+            if (event.target === signatureModal) hideSignatureModal();
+        });
+    }
     document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && !signatureModal.classList.contains("hidden")) hideSignatureModal();
+        if (event.key === "Escape" && signatureModal && !signatureModal.classList.contains("hidden")) hideSignatureModal();
     });
+    if (aboutMachineToggle && aboutMachineContent && aboutMachineIcon) {
+        aboutMachineToggle.addEventListener("click", () => {
+            const isOpen = aboutMachineContent.dataset.open === "true";
+
+            aboutMachineContent.dataset.open = String(!isOpen);
+            aboutMachineContent.classList.toggle("max-h-0", isOpen);
+            aboutMachineContent.classList.toggle("opacity-0", isOpen);
+            aboutMachineContent.classList.toggle("opacity-100", !isOpen);
+            aboutMachineContent.style.maxHeight = isOpen ? "0px" : `${aboutMachineContent.scrollHeight}px`;
+            aboutMachineIcon.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
+        });
+    }
     document.querySelectorAll(".gallery-thumb").forEach(thumb => {
         thumb.addEventListener("click", () => {
             changeImage(Number(thumb.dataset.imageIndex));
