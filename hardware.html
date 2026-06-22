@@ -404,6 +404,7 @@
 </p>
 </div>
 <a href="registro.html"
+   id="continueToRegistration"
    class="w-full h-14 btn-tech rounded-2xl font-headline-sm flex items-center justify-center gap-md hover:shadow-lg hover:shadow-brand-neon/20 active:scale-[0.98] transition-all">
     Continuar
     <span class="material-symbols-outlined">arrow_forward</span>
@@ -522,6 +523,32 @@ const ivaAmount = document.getElementById("ivaAmount");
         }).format(Math.round(value));
     }
 
+    function getSelectedOptionText(name) {
+        const selectedOption = document.querySelector(`input[name="${name}"]:checked`);
+        const selectedLabel = selectedOption?.closest("label");
+        return selectedLabel?.querySelector(".font-label-md, .font-body-md")?.textContent.trim() || "";
+    }
+
+    function saveHardwareSelection() {
+        const paperText = getSelectedOptionText("paper");
+        const chipText = getSelectedOptionText("chip");
+        const accessoryText = accessoryQuantity > 0
+            ? `${accessoryQuantity}x Funda de silicona`
+            : "Sin accesorios";
+
+        const selection = {
+            equipment: `${equipmentQuantity}x Modelo PRO-01`,
+            supplies: paperText || "5 rollos gratis incluidos",
+            accessories: accessoryText,
+            chip: chipText || "Entel",
+            subtotal: subtotalAmount?.textContent.trim() || "$0",
+            iva: ivaAmount?.textContent.trim() || "$0",
+            total: totalAmount?.textContent.trim() || "$0"
+        };
+
+        localStorage.setItem("kintuxHardwareSelection", JSON.stringify(selection));
+    }
+
     function calculateTotal() {
         const selectedOptionsTotal = Array.from(document.querySelectorAll(".js-price-option:checked"))
             .reduce((total, option) => total + Number(option.dataset.price || 0), 0);
@@ -536,6 +563,7 @@ const ivaAmount = document.getElementById("ivaAmount");
         if (totalAmount) totalAmount.textContent = formatCLP(totalWithIva);
         if (accessoryQuantityLabel) accessoryQuantityLabel.textContent = accessoryQuantity;
         if (equipmentQuantityLabel) equipmentQuantityLabel.textContent = equipmentQuantity;
+        saveHardwareSelection();
     }
 
     const signatureModal = document.getElementById("signatureModal");
@@ -607,6 +635,9 @@ const ivaAmount = document.getElementById("ivaAmount");
             calculateTotal();
         });
     });
+
+    const continueToRegistration = document.getElementById("continueToRegistration");
+    if (continueToRegistration) continueToRegistration.addEventListener("click", saveHardwareSelection);
 
     calculateTotal();
 </script>
