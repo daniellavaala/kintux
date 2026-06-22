@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registro y Verificación | Kintux POS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#001f28",
+                        "on-surface-variant": "#3a4a44",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed-dim": "#4cd6ff",
+                        "on-secondary-fixed": "#07006c",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#b7eaff",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "primary-fixed-dim": "#00e0b4",
+                        "inverse-primary": "#00e0b4",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#006b55",
+                        "on-primary-fixed-variant": "#00513f",
+                        "secondary": "#302ae6",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#4c4cfe",
+                        "on-secondary-container": "#e8e6ff",
+                        "secondary-fixed": "#e1e0ff",
+                        "surface-bright": "#faf8ff",
+                        "surface-container-highest": "#dae2fd",
+                        "primary-container": "#00f2c3",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface-variant": "#dae2fd",
+                        "surface": "#faf8ff",
+                        "primary": "#006b55",
+                        "on-primary-container": "#006a54",
+                        "on-primary-fixed": "#002118",
+                        "surface-dim": "#d2d9f4",
+                        "surface-container": "#eaedff",
+                        "on-tertiary-container": "#00667d",
+                        "outline": "#6a7b74",
+                        "tertiary": "#00677f",
+                        "on-background": "#131b2e",
+                        "outline-variant": "#b9cac2",
+                        "surface-container-high": "#e2e7ff",
+                        "on-surface": "#131b2e",
+                        "tertiary-container": "#92e2ff",
+                        "primary-fixed": "#2effcf",
+                        "background": "#faf8ff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#2316de",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "brand-neon": "#00f2c3",
+                        "brand-blue": "#302ae6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "xl": "40px",
+                        "lg": "32px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["22px", {"lineHeight": "30px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf8ff; }
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+        .btn-tech {
+            background: linear-gradient(135deg, #00f2c3 0%, #00b894 100%);
+            color: #002118;
+            box-shadow: 0 10px 20px -5px rgba(0, 242, 195, 0.4);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-tech:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(0, 242, 195, 0.5);
+        }
+        .input-focus-ring:focus {
+            outline: none;
+            border-color: #302ae6;
+            box-shadow: 0 0 0 4px rgba(48, 42, 230, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 10% 20%, rgba(0, 242, 195, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(48, 42, 230, 0.05) 0%, transparent 40%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+<!-- TopNavBar - Updated to match landing page (SCREEN_11) -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/20">
+<nav class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<a href="index.html" class="flex items-center gap-3">
+    <img 
+        alt="Kintux Logo" 
+        class="h-5 md:h-8 w-auto transition-all cursor-pointer"
+        src="https://res.cloudinary.com/dgde5mg2u/image/upload/v1781545930/Principal_Sin_Fondo_qtgwpp.png"
+    />
+</a>
+<div class="hidden md:flex items-center gap-xl">
+</div>
+<button class="btn-tech px-lg py-sm rounded-full font-label-md opacity-50 cursor-not-allowed pointer-events-none" type="button" disabled aria-disabled="true">
+            Obtener Gratis
+        </button>
+</nav>
+</header>
+<main class="pt-32 pb-xl px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto hero-gradient min-h-screen">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left Column: Registration Form -->
+<div class="lg:col-span-7">
+<header class="mb-xl">
+<div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-brand-neon/10 border border-brand-neon/20 text-primary font-label-md mb-md">
+<span class="w-2 h-2 rounded-full bg-brand-neon"></span>
+                    VERIFICACI&Oacute;N
+                </div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-xs">Registro y Verificación</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Completa la información de tu comercio para finalizar la solicitud.</p>
+</header>
+<form class="space-y-xl" id="registrationForm" action="mailto:dmorales@vaalagroup.cl" method="post" enctype="text/plain">
+<!-- Personal Information -->
+<section class="space-y-lg">
+<h2 class="font-headline-sm text-headline-sm flex items-center gap-md">
+<span class="material-symbols-outlined text-brand-blue">person</span>
+                        Información Personal
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Nombre y Apellido</label>
+<input class="bg-surface-container-low border border-outline-variant p-md rounded-xl input-focus-ring transition-all" placeholder="Ej: Juan Pérez" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Rut</label>
+<input class="bg-surface-container-low border border-outline-variant p-md rounded-xl input-focus-ring transition-all" name="Rut" placeholder="12.345.678-9" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Teléfono</label>
+<input class="bg-surface-container-low border border-outline-variant p-md rounded-xl input-focus-ring transition-all" name="Tel&eacute;fono" placeholder="+56 9 1234 5678" type="tel"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Correo electrónico</label>
+<input class="bg-surface-container-low border border-outline-variant p-md rounded-xl input-focus-ring transition-all" name="Correo electr&oacute;nico" placeholder="correo@ejemplo.com" type="email"/>
+</div>
+</div>
+</section>
+<!-- Business Information -->
+<section class="space-y-lg">
+<h2 class="font-headline-sm text-headline-sm flex items-center gap-md">
+<span class="material-symbols-outlined text-brand-blue">storefront</span>
+                        Información de la Empresa
+                    </h2>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Empresa</label>
+<input class="bg-surface-container-low border border-outline-variant p-md rounded-xl input-focus-ring transition-all" placeholder="Razón Social o Nombre de Fantasía" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Región</label>
+<select class="bg-surface-container-low border border-outline-variant p-md rounded-xl input-focus-ring transition-all appearance-none" name="Regi&oacute;n">
+<option>Arica y Parinacota</option>
+<option>Tarapac&aacute;</option>
+<option>Antofagasta</option>
+<option>Atacama</option>
+<option>Coquimbo</option>
+<option>Valpara&iacute;so</option>
+<option>Metropolitana de Santiago</option>
+<option>O&rsquo;Higgins</option>
+<option>Maule</option>
+<option>&Ntilde;uble</option>
+<option>Biob&iacute;o</option>
+<option>La Araucan&iacute;a</option>
+<option>Los R&iacute;os</option>
+<option>Los Lagos</option>
+<option>Ays&eacute;n</option>
+<option>Magallanes</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Provincia</label>
+<input class="bg-surface-container-low border border-outline-variant p-md rounded-xl input-focus-ring transition-all" name="Provincia" placeholder="Santiago" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Comuna</label>
+<input class="bg-surface-container-low border border-outline-variant p-md rounded-xl input-focus-ring transition-all" name="Comuna" placeholder="Las Condes" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<div class="md:col-span-2 flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Calle</label>
+<input class="bg-surface-container-low border border-outline-variant p-md rounded-xl input-focus-ring transition-all" name="Calle" placeholder="Av. Providencia" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Número</label>
+<input class="bg-surface-container-low border border-outline-variant p-md rounded-xl input-focus-ring transition-all" name="N&uacute;mero" placeholder="1234" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Oficina/Local</label>
+<input class="bg-surface-container-low border border-outline-variant p-md rounded-xl input-focus-ring transition-all" name="Oficina/Local" placeholder="Opcional" type="text"/>
+</div>
+</div>
+</section>
+<!-- Sales Verification Upload -->
+<section class="space-y-lg">
+<h2 class="font-headline-sm text-headline-sm flex items-center gap-md">
+<span class="material-symbols-outlined text-brand-blue">analytics</span>
+                        Verificación de Ventas
+                    </h2>
+<div class="border-2 border-dashed border-outline-variant rounded-2xl p-xl flex flex-col items-center justify-center text-center bg-white/50 hover:bg-surface-container-low transition-all cursor-pointer group" onclick="document.getElementById('file-upload').click()">
+<div class="w-16 h-16 rounded-full bg-brand-blue/10 flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-brand-blue text-3xl">upload_file</span>
+</div>
+<p class="font-headline-sm text-lg mb-xs">Selecciona un archivo para verificar ventas</p>
+<p class="font-body-md text-sm text-on-surface-variant max-w-sm">
+                            Sube tu Carpeta Tributaria o Cartola Bancaria que acredite ventas superiores a $1.000.000.
+                        </p>
+<p class="font-label-md text-primary mt-md hidden" id="uploaded-file-name"></p>
+<input class="hidden" id="file-upload" name="Archivo de verificaci&oacute;n" type="file"/>
+</div>
+</section>
+<!-- Action Section -->
+<div class="pt-lg space-y-md">
+<button class="w-full h-16 btn-tech rounded-2xl font-headline-md flex items-center justify-center gap-md active:scale-[0.98] transition-all disabled:opacity-80 disabled:cursor-not-allowed" id="submitRegistration" type="submit">
+                        Enviar información
+                        <span class="material-symbols-outlined">send</span>
+</button>
+<div class="flex gap-md bg-brand-blue/5 p-lg rounded-2xl border border-brand-blue/10 items-start">
+<span class="material-symbols-outlined text-brand-blue">info</span>
+<p class="font-body-md text-on-surface-variant">
+                            Recibirás un correo dentro de 24 horas con la confirmación de tu solicitud e instrucciones para proceder.
+                        </p>
+</div>
+</div>
+</form>
+</div>
+<!-- Right Column: Summary Card -->
+<div class="lg:col-span-5">
+<div class="sticky top-32 glass p-xl rounded-3xl">
+<div class="mb-lg border-b border-outline-variant/30 pb-md">
+<div class="flex justify-between items-center mb-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Tu selección</h3>
+<span class="material-symbols-outlined text-brand-blue">shopping_cart</span>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant">Resumen de la configuración actual.</p>
+</div>
+<div class="space-y-lg mb-xl">
+<div class="flex items-start gap-md">
+<div class="w-12 h-12 bg-brand-blue/5 rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-brand-blue">terminal</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-on-surface-variant">Máquinas</p>
+<p class="font-body-lg font-bold" id="summary-equipment">1x Modelo PRO-01</p>
+</div>
+<span class="text-primary font-bold" id="summary-equipment-price">GRATIS</span>
+</div>
+<div class="flex items-start gap-md">
+<div class="w-12 h-12 bg-brand-blue/5 rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-brand-blue">print</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-on-surface-variant">Insumos</p>
+<p class="font-body-lg font-bold" id="summary-supplies">5 rollos gratis incluidos</p>
+</div>
+<span class="text-primary font-bold" id="summary-supplies-price">INCLUIDO</span>
+</div>
+<div class="flex items-start gap-md">
+<div class="w-12 h-12 bg-brand-blue/5 rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-brand-blue">nest_eco_leaf</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-on-surface-variant">Accesorios</p>
+<p class="font-body-lg font-bold" id="summary-accessories">Sin accesorios</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<div class="w-12 h-12 bg-brand-blue/5 rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-brand-blue">sim_card</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-on-surface-variant">Chip de Internet</p>
+<div class="flex items-center gap-2">
+<p class="font-body-lg font-bold" id="summary-chip">Entel</p>
+<span class="bg-brand-neon/20 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">Gratis</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-lg border-t border-outline-variant/30 space-y-xs">
+<div class="flex justify-between text-sm text-on-surface-variant">
+<span>Neto</span>
+<span id="summary-subtotal">$0</span>
+</div>
+<div class="flex justify-between text-sm text-on-surface-variant">
+<span>IVA (19%)</span>
+<span id="summary-iva">$0</span>
+</div>
+<div class="flex justify-between items-end pt-xs">
+<span class="font-label-md text-on-surface-variant uppercase tracking-wider">Total</span>
+<span class="font-headline-md text-primary font-bold" id="summary-total">$0</span>
+</div>
+</div>
+<div class="pt-lg border-t border-outline-variant/30">
+<div class="bg-brand-neon/10 rounded-2xl p-md flex items-center justify-center gap-2 border border-brand-neon/20">
+<span class="material-symbols-outlined text-primary text-sm">verified</span>
+<p class="font-label-md text-primary font-bold uppercase tracking-wider">Configuración Premium</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer - Converted to Light -->
+<footer class="w-full py-20 bg-surface-container-low border-t border-outline-variant/20">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="md:col-span-1">
+<div class="flex items-center gap-3 mb-8"><img alt="Kintux Logo" class="h-8 w-auto" src="https://res.cloudinary.com/dgde5mg2u/image/upload/v1781545930/Principal_Sin_Fondo_qtgwpp.png"/></div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">
+                Empoderando a los comercios con tecnología financiera de punta y costos transparentes.
+            </p>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-brand-neon hover:text-white transition-all cursor-pointer">
+<span class="material-symbols-outlined text-sm">public</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-brand-neon hover:text-white transition-all cursor-pointer">
+<span class="material-symbols-outlined text-sm">mail</span>
+</div>
+</div>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-on-surface">Producto</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">La Terminal Pro</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">App Móvil</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Precios</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Seguridad</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-on-surface">Legal</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Privacidad</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Términos y Condiciones</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Contrato de Comercio</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Cookies</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-on-surface">Empresa</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Nosotros</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Blog</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Contacto</a></li>
+<li class=""><a class="hover:text-brand-blue transition-colors" href="#">Trabaja con nosotros</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop mt-20 pt-8 border-t border-outline-variant/10">
+<p class="text-xs text-on-surface-variant text-center">© 2026 Kintux. Todos los derechos reservados.</p>
+</div>
+</footer>
+<script>
+    document.querySelectorAll('input, select').forEach(element => {
+        element.addEventListener('focus', () => {
+            element.parentElement.querySelector('label')?.classList.add('text-brand-blue');
+        });
+        element.addEventListener('blur', () => {
+            element.parentElement.querySelector('label')?.classList.remove('text-brand-blue');
+        });
+    });
+
+    const dropZone = document.querySelector('.border-dashed');
+    const fileInput = document.getElementById('file-upload');
+    const uploadedFileName = document.getElementById('uploaded-file-name');
+
+    function updateSelectedFile(file) {
+        if (!uploadedFileName || !file) return;
+        uploadedFileName.textContent = `Archivo seleccionado: ${file.name}`;
+        uploadedFileName.classList.remove('hidden');
+    }
+
+    if (fileInput) {
+        fileInput.addEventListener('change', () => updateSelectedFile(fileInput.files?.[0]));
+    }
+
+    if (dropZone) {
+        ['dragover', 'dragleave', 'drop'].forEach(evt => {
+            dropZone.addEventListener(evt, (e) => {
+                e.preventDefault();
+                if (evt === 'dragover') dropZone.classList.add('bg-brand-blue/5', 'border-brand-blue');
+                else dropZone.classList.remove('bg-brand-blue/5', 'border-brand-blue');
+
+                if (evt === 'drop' && e.dataTransfer?.files?.length && fileInput) {
+                    fileInput.files = e.dataTransfer.files;
+                    updateSelectedFile(e.dataTransfer.files[0]);
+                }
+            });
+        });
+    }
+
+    function setText(id, value) {
+        const element = document.getElementById(id);
+        if (element && value) element.textContent = value;
+    }
+
+    const savedSelection = JSON.parse(localStorage.getItem('kintuxHardwareSelection') || 'null');
+    if (savedSelection) {
+        setText('summary-equipment', savedSelection.equipment);
+        setText('summary-supplies', savedSelection.supplies);
+        setText('summary-accessories', savedSelection.accessories);
+        setText('summary-chip', savedSelection.chip);
+        setText('summary-subtotal', savedSelection.subtotal);
+        setText('summary-iva', savedSelection.iva);
+        setText('summary-total', savedSelection.total);
+    }
+
+    const registrationForm = document.getElementById('registrationForm');
+    const submitRegistration = document.getElementById('submitRegistration');
+
+    if (registrationForm && submitRegistration) {
+        registrationForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(registrationForm);
+            const lines = [];
+            formData.forEach((value, key) => {
+                if (value instanceof File) {
+                    if (value.name) lines.push(`${key}: ${value.name}`);
+                    return;
+                }
+                lines.push(`${key}: ${value}`);
+            });
+
+            if (savedSelection) {
+                lines.push('');
+                lines.push('SelecciÃ³n de hardware:');
+                lines.push(`Equipos: ${savedSelection.equipment}`);
+                lines.push(`Insumos: ${savedSelection.supplies}`);
+                lines.push(`Accesorios: ${savedSelection.accessories}`);
+                lines.push(`Chip: ${savedSelection.chip}`);
+                lines.push(`Total: ${savedSelection.total}`);
+            }
+
+            const subject = encodeURIComponent('Solicitud de registro Kintux');
+            const body = encodeURIComponent(lines.join('\n'));
+            window.location.href = `mailto:dmorales@vaalagroup.cl?subject=${subject}&body=${body}`;
+
+            submitRegistration.disabled = true;
+            submitRegistration.innerHTML = 'Enviado correctamente <span class="material-symbols-outlined">check_circle</span>';
+        });
+    }
+</script>
+</body></html>
