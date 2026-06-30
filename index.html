@@ -12,11 +12,11 @@
                 extend: {
                     "colors": {
                         "on-tertiary-fixed": "#001f28",
-                        "on-surface-variant": "#3a4a44",
+                        "on-surface-variant": "#b8c4d8",
                         "secondary-fixed-dim": "#c0c1ff",
                         "tertiary-fixed-dim": "#4cd6ff",
                         "on-secondary-fixed": "#07006c",
-                        "surface-container-lowest": "#ffffff",
+                        "surface-container-lowest": "#0c1220",
                         "error-container": "#ffdad6",
                         "tertiary-fixed": "#b7eaff",
                         "on-primary": "#ffffff",
@@ -32,28 +32,28 @@
                         "secondary-container": "#4c4cfe",
                         "on-secondary-container": "#e8e6ff",
                         "secondary-fixed": "#e1e0ff",
-                        "surface-bright": "#faf8ff",
-                        "surface-container-highest": "#dae2fd",
+                        "surface-bright": "#1c2540",
+                        "surface-container-highest": "#25304d",
                         "primary-container": "#00f2c3",
                         "inverse-on-surface": "#eef0ff",
-                        "surface-variant": "#dae2fd",
-                        "surface": "#faf8ff",
+                        "surface-variant": "#25304d",
+                        "surface": "#131b2e",
                         "primary": "#006b55",
                         "on-primary-container": "#006a54",
                         "on-primary-fixed": "#002118",
-                        "surface-dim": "#d2d9f4",
-                        "surface-container": "#eaedff",
+                        "surface-dim": "#0f1728",
+                        "surface-container": "#19233a",
                         "on-tertiary-container": "#00667d",
-                        "outline": "#6a7b74",
+                        "outline": "#60708f",
                         "tertiary": "#00677f",
-                        "on-background": "#131b2e",
-                        "outline-variant": "#b9cac2",
-                        "surface-container-high": "#e2e7ff",
-                        "on-surface": "#131b2e",
+                        "on-background": "#f4f7ff",
+                        "outline-variant": "#40506d",
+                        "surface-container-high": "#202a45",
+                        "on-surface": "#f4f7ff",
                         "tertiary-container": "#92e2ff",
                         "primary-fixed": "#2effcf",
-                        "background": "#faf8ff",
-                        "surface-container-low": "#f2f3ff",
+                        "background": "#0c1220",
+                        "surface-container-low": "#151f34",
                         "on-error-container": "#93000a",
                         "on-tertiary": "#ffffff",
                         "on-secondary-fixed-variant": "#2316de",
@@ -107,10 +107,10 @@
     </script>
     <style>
         .glass {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(19, 27, 46, 0.78);
             backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 24px 70px 0 rgba(0, 0, 0, 0.35);
         }
         /* Hero oscuro con fondo #131B2E y gradientes basados en #302AE6 y #00f2c3 */
         .hero-dark {
@@ -150,7 +150,7 @@
             width: 100%;
             height: 4px;
             cursor: pointer;
-            background: #e2e7ff;
+            background: #40506d;
             border-radius: 2px;
         }
         input[type=range]::-webkit-slider-thumb {
@@ -178,12 +178,53 @@
                 src="https://res.cloudinary.com/dgde5mg2u/image/upload/v1781545930/Principal_Sin_Fondo_qtgwpp.png"
             />
         </a>
-        <div class="flex items-center gap-8">
-            <a class="nav-link font-label-md text-white/70 hover:text-brand-neon transition-colors" href="#machine">La Máquina</a>
-            <a class="nav-link font-label-md text-white/70 hover:text-brand-neon transition-colors" href="#commissions">Comisiones</a>
-            <a class="nav-link font-label-md text-white/70 hover:text-brand-neon transition-colors" href="#calculator">Calculadora</a>
-            <a class="nav-link font-label-md text-white/70 hover:text-brand-neon transition-colors" href="#">Soporte</a>
+        
+        <div class="flex items-center gap-8 h-full">
+            
+            <div class="relative group h-full flex items-center">
+                <a class="nav-link font-label-md text-white/70 hover:text-brand-neon transition-colors flex items-center gap-1 py-4" href="index.html">
+                    Inicio
+                    <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                </a>
+                <div class="dropdown-menu absolute top-[100%] left-1/2 -translate-x-1/2 w-56 p-2 rounded-2xl bg-[#131b2e] border border-white/10 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50">
+                    <a href="#machine" class="dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all">La Máquina</a>
+                    <a href="#commissions" class="dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all">Comisión</a>
+                    <a href="#calculator" class="dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all">Calculadora</a>
+                    <a href="#partners" class="dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all">Alianzas</a>
+                    <a href="#faq" class="dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all">Preguntas frecuentes</a>
+                </div>
+            </div>
+
+            <div class="relative group h-full flex items-center">
+                <a class="nav-link font-label-md text-white/70 hover:text-brand-neon transition-colors flex items-center gap-1 py-4" href="hardware.html">
+                    Terminales
+                    <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                </a>
+                <div class="dropdown-menu absolute top-[100%] left-1/2 -translate-x-1/2 w-52 p-2 rounded-2xl bg-[#131b2e] border border-white/10 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50">
+                    <a href="hardware.html" class="dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all">Kintux Pro</a>
+                    <a href="hardware.html" class="dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all">Formas de Pago</a>
+                    <a href="registro.html" class="dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all">Quiero sumarme</a>
+                </div>
+            </div>
+
+            <div class="relative group h-full flex items-center">
+                <a class="nav-link font-label-md text-white/70 hover:text-brand-neon transition-colors flex items-center gap-1 py-4" href="hardware.html">
+                    Accesorios
+                    <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                </a>
+                <div class="dropdown-menu absolute top-[100%] left-1/2 -translate-x-1/2 w-48 p-2 rounded-2xl bg-[#131b2e] border border-white/10 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50">
+                    <a href="hardware.html" class="dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all">Fundas</a>
+                    <a href="hardware.html" class="dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all">Lanyards</a>
+                    <a href="hardware.html" class="dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all">Rollos extra</a>
+                </div>
+            </div>
+
+            <div class="h-full flex items-center">
+                <a class="nav-link font-label-md text-white/70 hover:text-brand-neon transition-colors py-4" href="soporte.html">Soporte</a>
+            </div>
+
         </div>
+
         <a class="btn-tech px-lg py-sm rounded-full font-label-md" href="hardware.html">
             Obtener Gratis
         </a>
@@ -198,10 +239,13 @@
                 FINTECH 2026
             </div>
             <h1 class="font-display-lg text-display-lg mb-lg text-white">
-                Menos Comisión, <span class="text-brand-neon"> <br> Más Tecnología.</span>
+                La Fintech que <span class="text-brand-neon"> <br> sí </span> <span class="font-display-lg text-display-lg mb-lg text-white"> opera. </span>
             </h1>
             <p class="font-body-lg text-body-lg text-white/70 mb-xl max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                Únete a los miles de comercios que ya no pagan por su hardware. Recibe tu Kintux Pro sin costo y con la comisión más baja del mercado.
+                <strong>No somos la pasarela de pago aburrida ni la fintech turbia. </strong> Somos el partner financiero que acelera tu negocio. Con soluciones rápidas aseguradas, sin contratos amarrados y sin letras chicas. <strong>Solo tú, tus ventas y nosotros multiplicándolas.</strong>
+            </p>
+            <p class="max-w-xl mx-auto lg:mx-0 mb-lg border-l-4 border-brand-neon bg-white/5 px-5 py-4 text-lg font-semibold italic leading-relaxed text-white shadow-lg shadow-brand-neon/10">
+                Si tu terminal de pago se parece al control remoto de tu primer televisor, estás cobrando en el siglo pasado.
             </p>
             <div class="flex flex-col sm:flex-row gap-md justify-center lg:justify-start">
                 <a class="btn-tech px-xl py-md rounded-2xl font-headline-sm flex items-center justify-center gap-2" href="hardware.html">
@@ -216,7 +260,7 @@
         <div class="relative">
             <div class="absolute -top-10 -right-10 w-96 h-96 bg-brand-neon/10 rounded-full blur-[100px]"></div>
             <div class="absolute -bottom-10 -left-10 w-96 h-96 bg-brand-blue/20 rounded-full blur-[100px]"></div>
-            <img alt="Kintux Pro Terminal" class="relative z-10 mx-auto" src="https://res.cloudinary.com/dgde5mg2u/image/upload/v1781554587/Isotipo_Principal_Sin_Fondo_hdpa6m.png"/>
+            <img alt="Kintux Pro Terminal" class="relative z-10 mx-auto" src="https://res.cloudinary.com/dgde5mg2u/image/upload/v1782848257/PosHero_afumst.png"/>
         </div>
     </div>
 </section>
@@ -231,9 +275,9 @@
 </div>
 </div>
 <div class="order-1 lg:order-2">
-<h2 class="font-headline-lg text-headline-lg mb-lg text-on-surface">Kintux Pro: La única herramienta que tu negocio necesita</h2>
-<p class="text-body-lg text-on-surface-variant mb-xl leading-relaxed">
-                    Nuestra terminal insignia combina potencia, diseño y simplicidad. Procesadora Quad-Core, batería de larga duración e impresora térmica integrada. 
+<h2 class="font-headline-lg text-headline-lg mb-lg text-[#131b2e]">Kintux Pro: La única herramienta que tu negocio necesita</h2>
+<p class="text-body-lg text-[#3a4a44] mb-xl leading-relaxed">
+                     Ya seas un restaurante en hora punta, un estacionamiento con fila o un comercio que no para de facturar, necesitas hardware y software que aguanten el trote. Te presentamos el <strong> Modelo Kintux Pro:</strong> La estación de pago diseñada para aguantar el ritmo del mundo real. 
                     <br/><br/>
 <strong>Y lo mejor: es gratis para comercios con ventas mensuales superiores a $1.000.000.</strong>
 </p>
@@ -241,32 +285,54 @@
 <div class="flex gap-4">
 <span class="material-symbols-outlined text-brand-neon text-3xl">wifi</span>
 <div>
-<h4 class="font-headline-sm text-lg mb-1 text-on-surface">Dual Connectivity</h4>
-<p class="text-sm text-on-surface-variant">4G LTE + Wi-Fi de alta velocidad incluido.</p>
+<h4 class="font-headline-sm text-lg mb-1 text-[#131b2e]">Dual Connectivity</h4>
+<p class="text-sm text-[#3a4a44]">4G LTE + Wi-Fi de alta velocidad incluido.</p>
 </div>
 </div>
 <div class="flex gap-4">
 <span class="material-symbols-outlined text-brand-neon text-3xl">print</span>
 <div>
-<h4 class="font-headline-sm text-lg mb-1 text-on-surface">Impresora Ultra-fast</h4>
-<p class="text-sm text-on-surface-variant">Tickets en papel en menos de 2 segundos.</p>
+<h4 class="font-headline-sm text-lg mb-1 text-[#131b2e]">Impresora Ultra-fast</h4>
+<p class="text-sm text-[#3a4a44]">Tickets en papel en menos de 2 segundos.</p>
 </div>
 </div>
 <div class="flex gap-4">
 <span class="material-symbols-outlined text-brand-neon text-3xl">contactless</span>
 <div>
-<h4 class="font-headline-sm text-lg mb-1 text-on-surface">NFC &amp; Chip</h4>
-<p class="text-sm text-on-surface-variant">Acepta todas las tarjetas y billeteras digitales.</p>
+<h4 class="font-headline-sm text-lg mb-1 text-[#131b2e]">NFC &amp; Chip</h4>
+<p class="text-sm text-[#3a4a44]">Acepta todas las tarjetas y billeteras digitales.</p>
 </div>
 </div>
 <div class="flex gap-4">
 <span class="material-symbols-outlined text-brand-neon text-3xl">battery_charging_full</span>
 <div>
-<h4 class="font-headline-sm text-lg mb-1 text-on-surface">24h Battery</h4>
-<p class="text-sm text-on-surface-variant">Trabaja todo el día sin preocuparte por cables.</p>
+<h4 class="font-headline-sm text-lg mb-1 text-[#131b2e]">24h Battery</h4>
+<p class="text-sm text-[#3a4a44]">Trabaja todo el día sin preocuparte por cables.</p>
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="mt-16 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-lg">
+<div class="rounded-2xl border border-outline-variant/20 bg-[#f7f9ff] p-6 shadow-lg shadow-black/5">
+<span class="material-symbols-outlined text-brand-neon text-3xl mb-4 block">signal_cellular_alt</span>
+<h4 class="font-headline-sm text-lg mb-2 text-[#131b2e]">Internet incluido</h4>
+<p class="text-sm text-[#3a4a44] leading-relaxed">Chip multi-operador (Entel o Movistar) con datos libres. Cero configuraciones complejas.</p>
+</div>
+<div class="rounded-2xl border border-outline-variant/20 bg-[#f7f9ff] p-6 shadow-lg shadow-black/5">
+<span class="material-symbols-outlined text-brand-neon text-3xl mb-4 block">inventory_2</span>
+<h4 class="font-headline-sm text-lg mb-2 text-[#131b2e]">Pack de bienvenida</h4>
+<p class="text-sm text-[#3a4a44] leading-relaxed">5 rollos gratis incluidos para empezar a facturar de inmediato.</p>
+</div>
+<div class="rounded-2xl border border-outline-variant/20 bg-[#f7f9ff] p-6 shadow-lg shadow-black/5">
+<span class="material-symbols-outlined text-brand-neon text-3xl mb-4 block">verified_user</span>
+<h4 class="font-headline-sm text-lg mb-2 text-[#131b2e]">Seguridad nivel Dios</h4>
+<p class="text-sm text-[#3a4a44] leading-relaxed">No jugamos con tu dinero. Cada transacción está respaldada por altos estándares de seguridad y validada por la CMF. Es una transacción 100% segura.</p>
+</div>
+<div class="rounded-2xl border border-outline-variant/20 bg-[#f7f9ff] p-6 shadow-lg shadow-black/5">
+<span class="material-symbols-outlined text-brand-neon text-3xl mb-4 block">support_agent</span>
+<h4 class="font-headline-sm text-lg mb-2 text-[#131b2e]">Soporte perfecto</h4>
+<p class="text-sm text-[#3a4a44] leading-relaxed">Hasta a la NASA se le caen los sistemas. La diferencia es que cuando nuestro hardware parpadee, no te dejaremos colgado en una fila de espera virtual. Respondemos al instante con soluciones, no con excusas.</p>
 </div>
 </div>
 </div>
@@ -382,10 +448,72 @@
 </div>
 </section>
 
+<section class="py-32 bg-surface-container-low border-y border-outline-variant/20" id="partners">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="max-w-4xl">
+<span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-brand-neon/10 border border-brand-neon/30 text-brand-neon font-label-md mb-md">ALIANZAS</span>
+<h2 class="font-headline-lg text-headline-lg mb-6 text-on-surface">Hagamos negocios en serio</h2>
+<p class="font-body-lg text-on-surface-variant mb-xl leading-relaxed max-w-3xl">No somos solo una máquina; somos una suite transaccional chilena con la mirada puesta en toda Latinoamérica. Si quieres ser un partner estratégico y crecer con nosotros, te ofrecemos las comisiones más competitivas del ecosistema Fintech.</p>
+<a class="btn-tech px-xl py-md rounded-2xl font-headline-sm inline-flex items-center justify-center gap-2" href="mailto:partners@kintux.cl">
+Quiero ser partner
+<span class="material-symbols-outlined">handshake</span>
+</a>
+</div>
+</div>
+</section>
+
+<section class="py-32 bg-surface" id="faq">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg mb-4 text-on-surface">Preguntas frecuentes</h2>
+<p class="font-body-md text-on-surface-variant">Respuestas rápidas para avanzar sin vueltas.</p>
+</div>
+<div class="space-y-4">
+<details class="group rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-headline-sm text-on-surface">
+¿Cómo adquiero mi Kintux Pro?
+<span class="material-symbols-outlined text-brand-neon transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed">Texto maqueta: completa el formulario, validamos tus datos comerciales y coordinamos la entrega de tu terminal.</p>
+</details>
+<details class="group rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-headline-sm text-on-surface">
+¿Cuáles son las ventajas?
+<span class="material-symbols-outlined text-brand-neon transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed">Texto maqueta: accedes a una comisión competitiva, hardware moderno, soporte rápido y liquidaciones simples.</p>
+</details>
+<details class="group rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-headline-sm text-on-surface">
+¿Cómo recibiré el dinero?
+<span class="material-symbols-outlined text-brand-neon transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed">Texto maqueta: recibirás tus pagos directamente en la cuenta bancaria registrada durante el proceso de activación.</p>
+</details>
+<details class="group rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-headline-sm text-on-surface">
+¿Cuáles son los costos de mi Kintux Pro?
+<span class="material-symbols-outlined text-brand-neon transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed">Texto maqueta: el equipo puede tener costo $0 para comercios que cumplan las condiciones comerciales indicadas.</p>
+</details>
+<details class="group rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-headline-sm text-on-surface">
+¿Mi comisión cambiará con el tiempo?
+<span class="material-symbols-outlined text-brand-neon transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed">Texto maqueta: cualquier cambio se informará con transparencia y dependerá de las condiciones comerciales vigentes.</p>
+</details>
+</div>
+</div>
+</div>
+</section>
+
 <footer class="w-full py-20 bg-surface-container-low border-t border-outline-variant/20">
 <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-12">
 <div class="md:col-span-1">
-<div class="flex items-center gap-3 mb-8"><img alt="Kintux Logo" class="h-8 w-auto" src="https://res.cloudinary.com/dgde5mg2u/image/upload/v1781545930/Principal_Sin_Fondo_qtgwpp.png"/></div>
+<div class="flex items-center gap-3 mb-8"><img alt="Kintux Logo" class="h-8 w-auto" src="https://res.cloudinary.com/dgde5mg2u/image/upload/v1781545929/Negativa_Sin_Fondo_uo3iq3.png"/></div>
 <p class="text-on-surface-variant text-sm leading-relaxed mb-8">
                 Empoderando a los comercios con tecnología financiera de punta y costos transparentes.
             </p>
@@ -432,25 +560,47 @@
 </footer>
 
 <script>
-  // --- Lógica del Navbar Inteligente (Negativo a Positivo) ---
+ // --- Lógica del Navbar Inteligente (Negativo a Positivo) con Dropdowns Integrados ---
   const navbar = document.getElementById('navbar');
   const navbarLogo = document.getElementById('navbar-logo');
   const navLinks = document.querySelectorAll('.nav-link');
+  // Añadimos la selección de los menús desplegables
+  const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+  const dropdownItems = document.querySelectorAll('.dropdown-item');
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      // Estado Positivo (Claro) al hacer scroll hacia abajo
+    if (window.scrollY > 120) {
+      // Estado oscuro al hacer scroll hacia abajo
       navbar.className = "fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/20 transition-all duration-300";
-      navbarLogo.className = "h-5 md:h-8 w-auto transition-all cursor-pointer brightness-100 invert-0";
+      navbarLogo.className = "h-5 md:h-8 w-auto transition-all cursor-pointer brightness-0 invert";
+      
       navLinks.forEach(link => {
-        link.className = "nav-link font-label-md text-on-surface-variant hover:text-brand-blue transition-colors";
+        link.className = "nav-link font-label-md text-white/70 hover:text-brand-neon transition-colors flex items-center gap-1 py-4";
       });
+
+      dropdownMenus.forEach(menu => {
+        menu.className = "dropdown-menu absolute top-[100%] left-1/2 -translate-x-1/2 w-56 p-2 rounded-2xl bg-[#131b2e] border border-white/10 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50";
+      });
+      dropdownItems.forEach(item => {
+        item.className = "dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all";
+      });
+
     } else {
       // Estado Negativo (Oscuro) al estar arriba sobre el hero
       navbar.className = "fixed top-0 w-full z-50 bg-[#131b2e]/90 backdrop-blur-xl border-b border-white/10 transition-all duration-300";
       navbarLogo.className = "h-5 md:h-8 w-auto transition-all cursor-pointer brightness-0 invert";
+      
       navLinks.forEach(link => {
-        link.className = "nav-link font-label-md text-white/70 hover:text-brand-neon transition-colors";
+        // Mantenemos flex, gap y py-4 para el modo oscuro
+        link.className = "nav-link font-label-md text-white/70 hover:text-brand-neon transition-colors flex items-center gap-1 py-4";
+      });
+
+      // CAMBIO OSCURO: Devolvemos las tarjetas desplegables a su color oscuro original #131b2e
+      dropdownMenus.forEach(menu => {
+        menu.className = "dropdown-menu absolute top-[100%] left-1/2 -translate-x-1/2 w-56 p-2 rounded-2xl bg-[#131b2e] border border-white/10 shadow-2xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50";
+      });
+      dropdownItems.forEach(item => {
+        item.className = "dropdown-item flex items-center px-4 py-3 text-sm text-white/80 hover:text-brand-neon hover:bg-white/5 rounded-xl transition-all";
       });
     }
   });
@@ -524,3 +674,4 @@
 </script>
 </body>
 </html>
+
